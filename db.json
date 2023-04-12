@@ -35,6 +35,12 @@
       "name": "Cookies",
       "category": "Dessert",
       "isInCart": false
+    },
+    {
+      "name": "Ice Cream",
+      "category": "Dessert",
+      "isInCart": true,
+      "id": 7
     }
   ]
 }

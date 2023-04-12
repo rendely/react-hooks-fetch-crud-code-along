@@ -8,7 +8,6 @@ function ItemForm({onAddItem}) {
 
   function handleSubmit(e){
     e.preventDefault();
-    console.log('fetching');
     const itemData = {
       name: name,
       category: category,
@@ -29,7 +28,7 @@ function ItemForm({onAddItem}) {
   }
 
   return (
-    <form className="NewItem">
+    <form className="NewItem" onSubmit={handleSubmit}>
       <label>
         Name:
         <input
@@ -53,7 +52,7 @@ function ItemForm({onAddItem}) {
         </select>
       </label>
 
-      <button type="submit" onClick={handleSubmit}>Add to List</button>
+      <button type="submit" >Add to List</button>
     </form>
   );
 }
