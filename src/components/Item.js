@@ -1,6 +1,6 @@
 import React from "react";
 
-function Item({ item, onItemCartChange }) {
+function Item({ item, onItemChange, onItemRemove }) {
   const itemsAPI = 'http://localhost:4000/items';
 
   function handleCartClick(e){
@@ -19,8 +19,19 @@ function Item({ item, onItemCartChange }) {
     })
       .then(r => r.json())
       .then(updatedItem => {
-        onItemCartChange(updatedItem);
+        onItemChange(updatedItem);
       })
+  }
+  
+  function handleDeleteClick(e){
+    e.preventDefault();
+    fetch(`${itemsAPI}/${item.id}`,{
+      method: "DELETE"})
+      .then(r => r.json())
+      .then(() => {
+        onItemRemove(item);
+      })
+    
   }
 
   return (
@@ -31,7 +42,7 @@ function Item({ item, onItemCartChange }) {
               onClick={handleCartClick}>
         {item.isInCart ? "Remove From" : "Add to"} Cart
       </button>
-      <button className="remove">Delete</button>
+      <button className="remove" onClick={handleDeleteClick}>Delete</button>
     </li>
   );
 }

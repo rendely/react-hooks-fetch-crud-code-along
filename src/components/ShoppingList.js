@@ -28,10 +28,15 @@ function ShoppingList() {
     setSelectedCategory(category);
   }
 
-  function handleItemCartChange(updatedItem){
+  function handleItemChange(updatedItem){
     const updatedItems = items.map(item =>{
       return (item.id === updatedItem.id) ? updatedItem : item;
     });
+    setItems(updatedItems);
+  }
+
+  function handleItemRemove(removedItem){
+    const updatedItems = items.filter(item => item.id !== removedItem.id);
     setItems(updatedItems);
   }
 
@@ -50,7 +55,7 @@ function ShoppingList() {
       />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item} onItemCartChange={handleItemCartChange}/>
+          <Item key={item.id} item={item} onItemChange={handleItemChange} onItemRemove={handleItemRemove}/>
         ))}
       </ul>
     </div>
